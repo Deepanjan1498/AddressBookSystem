@@ -36,7 +36,7 @@ public class AddressBookMain {
 		Contacts obj=contactMap.get(fn);
 		System.out.println();
 		System.out.println("Enter the PhoneNumber");
-		long num=sc.nextLong();
+		int num=sc.nextInt();
 		obj.setPhoneNumber(num);
 		System.out.println("Enter the Email");
 		String emId=sc.next();
@@ -57,6 +57,16 @@ public class AddressBookMain {
 	public void printContact()
 	{
 	System.out.println(contactArray);
+	}
+	/**
+	 * uc4
+	 */
+	public void deleteContact()
+	{
+		System.out.println("Enter The First Name to delete the contact details");
+		String fn=sc.nextLine();
+		Contacts obj=contactMap.get(fn);
+		contactArray.remove(obj);
 	}
 	public static void main(String args[]) {
 		Scanner s = new Scanner(System.in);
@@ -81,6 +91,9 @@ public class AddressBookMain {
         Contactno1.printContact();
         Contactno1.editContact();
         System.out.println("After Editing the conntacts :");
+        Contactno1.printContact();
+        Contactno1.deleteContact();
+        System.out.println("After Deleting the contact:");
         Contactno1.printContact();
 	}
 
