@@ -30,11 +30,4 @@ public class Contacts {
 				+ ", state=" + state + "]";
 	}
 
-	public static void main(String args[]) {
-		System.out.println("Welcome to Address Book Program");
-		Contacts Contactno1 = new Contacts("Deepanjan", "Sharma", 1896545926, "deepanjansharma43@gmail.com",
-				"Kahalgaon", 813214, "Bhagalpur", "Bihar");
-		System.out.println(Contactno1);
-	}
-
 }
