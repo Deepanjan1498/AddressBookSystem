@@ -1,27 +1,63 @@
 package capgemini.addressbooksystem;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBookMain {
+	
 
-	int numOfContact = 0;
-	private Contacts[] contactArray;
-
-	public AddressBookMain() {
-		contactArray = new Contacts[8];
+	Scanner sc=new Scanner(System.in);
+	private ArrayList<Contacts> contactArray;
+	private Map<String,Contacts> contactMap;
+	public AddressBookMain()
+	{
+		contactArray=new ArrayList<>();
+		contactMap=new HashMap<>();
 	}
-
 	/**
 	 *uc2
 	 */
 	public void addNewContact(String firstName, String lastName, long phoneNumber, String emailId, String address,
 			int zipcode, String city, String state) {
-		contactArray[numOfContact] = new Contacts(firstName, lastName, phoneNumber, emailId, address, zipcode, city,
+		Contacts con = new Contacts(firstName, lastName, phoneNumber, emailId, address, zipcode, city,
 				state);
-		System.out.println(contactArray[numOfContact]);
-		numOfContact++;
+		contactArray.add(con);
+		contactMap.put(firstName,con);
 	}
-
+	/**
+	 * uc3
+	 */
+	public void editContact()
+	{
+		System.out.println("Enter The First Name Whose contact details is to be Edited: ");
+		String fn=sc.nextLine();
+		Contacts obj=contactMap.get(fn);
+		System.out.println();
+		System.out.println("Enter the PhoneNumber");
+		long num=sc.nextLong();
+		obj.setPhoneNumber(num);
+		System.out.println("Enter the Email");
+		String emId=sc.next();
+		obj.setEmailId(emId);
+		System.out.println("Enter the Address");
+		String add=sc.next();
+		obj.setAddress(add);
+		System.out.println("Enter the Zipcode");
+		int zip=sc.nextInt();
+		obj.setZipCode(zip);
+		System.out.println("Enter the City");
+		String cit=sc.next();
+		obj.setCity(cit);
+		System.out.println("Enter the State");
+		String sta=sc.next();
+		obj.setState(sta);
+	}
+	public void printContact()
+	{
+	System.out.println(contactArray);
+	}
 	public static void main(String args[]) {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Enter First Name of the contact");
@@ -42,7 +78,10 @@ public class AddressBookMain {
 		String state = s.next();
 		AddressBookMain Contactno1 = new AddressBookMain();
 		Contactno1.addNewContact(firstName, lastName, phoneNumber, emailId, address, zipcode, city, state);
-        s.close();
+        Contactno1.printContact();
+        Contactno1.editContact();
+        System.out.println("After Editing the conntacts :");
+        Contactno1.printContact();
 	}
 
 }
