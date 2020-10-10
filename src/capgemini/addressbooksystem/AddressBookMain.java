@@ -91,17 +91,23 @@ public class AddressBookMain {
 	 */
 	public static void main(String args[]) {
 		Scanner sa = new Scanner(System.in);
-		AddressBookMain Contactno1 = new AddressBookMain();
-		for (int i = 0; i >= 0; i++) {
-			System.out.println("Do You Want to add a Contact?(Y/N)");
-			char choice = sa.next().charAt(0);
-			if (choice == 'Y') {
-				Contactno1.addNewContact();
-				Contactno1.printContact();
-			} else
-				System.exit(0);
-
-		}
+		AddressBookMain Contactno1=new AddressBookMain();
+		for(int i=1;i>0;i++)
+		{
+		System.out.println("Enter the choice to be performed \n1.Add new Contact Details. \n2.Edit Existing Contact Details. \n3. Delete Contact Details \n4.Print Address Book \n5.Close");
+		int choice=sa.nextInt();
+		switch(choice){
+		case 1:Contactno1.addNewContact();
+		       break;
+		case 2:Contactno1.editContact();
+               break;		
+		case 3:Contactno1.deleteContact();
+               break;
+		case 4:Contactno1.printContact();       
+               break;
+		case 5:System.exit(0);;       
+		  }
+	    }	
 	}
 
 }
