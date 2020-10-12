@@ -46,6 +46,24 @@ public class AddressBookSystem {
 		personSearch(stateName);
 	}
 }
+	
+	/**
+	 * uc10
+	 */
+	public static void numberByCity() {
+		Set<String> listOfCity = cityToContactEntryMap.keySet();
+		for(String cityName : listOfCity) {
+		Contacts contactNumber = cityToContactEntryMap.get(cityName);
+		System.out.println("Number of Contacts from city " + cityName + " " + ((Map<String, AddressBookMain>) contactNumber).size());
+		}
+		}
+		public static void numberByState() {
+		Set<String> listOfState = stateToContactEntryMap.keySet();
+		for(String stateName : listOfState) {
+		Contacts contactNumber = stateToContactEntryMap.get(stateName);
+		System.out.println("Number of Contacts from state " + stateName + " " + ((Map<String, AddressBookMain>) contactNumber).size());
+		}
+		}
 	public void displayAddressBooks() {
 		System.out.println("\nThe Address Books Added are: \n");
 		addressMap.forEach((k, v) -> System.out.println(k + "\n"));
@@ -85,6 +103,8 @@ public class AddressBookSystem {
 			System.out.println("\n2.Searching for a Person in Address Books");
 			System.out.println("\n3. Displaying Contacts grouped by city");
 			System.out.println("\n4. Displaying Contacts grouped by state");
+			System.out.println("\n5. Number of Contacts according to city");
+			System.out.println("\n6. Number of Contacts according to state");
 			System.out.println("\n Enter Your Choice:");
 			int num=sn.nextInt();
 			switch(num)
@@ -117,6 +137,12 @@ public class AddressBookSystem {
 			case 4:
 				displayContactsByStateGrouping();
 				break;	
+			case 5:
+				numberByCity();
+				break;
+			case 6:
+				numberByState();
+				break;
 			}
 		}
 		
