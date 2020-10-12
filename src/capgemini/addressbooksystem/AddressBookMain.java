@@ -3,6 +3,7 @@ package capgemini.addressbooksystem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -15,7 +16,14 @@ public class AddressBookMain {
 		contactArray = new ArrayList<>();
 		contactMap = new HashMap<>();
 	}
-
+  
+	public List<Contacts> getcontactArray(){
+		return contactArray;
+	}
+	public Map<String,Contacts> getcontactMap()
+	{
+		return contactMap;
+	}
 	/**
 	 * uc2
 	 */
