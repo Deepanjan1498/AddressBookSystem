@@ -7,17 +7,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * @author Mentalist
+ *
+ */
 public class AddressBookMain {
 
 	private ArrayList<Contacts> contactArray;
 	private Map<String, Contacts> contactMap;
+	private Map<String,Contacts> cityToContactEntryMap;
+	private Map<String,Contacts> stateToContactEntryMap;
 	
 	public AddressBookMain() {
 		contactArray = new ArrayList<>();
 		contactMap = new HashMap<>();
+		cityToContactEntryMap=new TreeMap<String,Contacts>();
+		stateToContactEntryMap=new TreeMap<String,Contacts>();
 	}
   
 	public List<Contacts> getcontactArray(){
@@ -117,7 +126,10 @@ public class AddressBookMain {
 			System.out.println("\n2. Edit Contact Details");
 			System.out.println("\n3. Delete Contact Details");
 			System.out.println("\n4. Sorting Contact Details by Person's name:");
-			System.out.println("\n5. Exit");
+			System.out.println("\n5. Sorting Contact Details City:");
+			System.out.println("\n6. Sorting Contact Details by ZipCode:");
+			System.out.println("\n7. Sorting Contact Details by State:");
+			System.out.println("\n8. Exit");
 			System.out.println("\nEnter your choice");
 			int index=sa.nextInt();
 			switch(index)
@@ -135,7 +147,10 @@ public class AddressBookMain {
 						deleteContact();
 			break;
 			case 4:alphabeticSorting();
-			case 5:System.out.println("Exit");
+			case 5:sortingByCity();
+			case 6:sortingByZip();
+			case 7:sortingByState();
+			case 8:System.out.println("Exit");
 				   System.exit(0);
 			break;
 			}
@@ -161,4 +176,28 @@ public class AddressBookMain {
 	.collect(Collectors.toList());
 	sortedList.forEach(System.out::println);
 	}	
+	/**
+	 * uc12
+	 */
+	public void sortingByCity()
+	{
+		List<Contacts> sortedList = contactArray.stream()
+		.sorted(Comparator.comparing(Contacts::getCity))
+		.collect(Collectors.toList());
+		sortedList.forEach(System.out::println);
+	}
+	public void sortingByZip()
+	{
+	List<Contacts> sortedList = contactArray.stream()
+	.sorted(Comparator.comparingInt(Contacts::getZipCode))
+	                      .collect(Collectors.toList());
+	sortedList.forEach(System.out::println);
+	}	
+	public void sortingByState()
+	{
+		List<Contacts> sortedList = contactArray.stream()
+		.sorted(Comparator.comparing(Contacts::getState))
+		.collect(Collectors.toList());
+		sortedList.forEach(System.out::println);
+     }
 }
