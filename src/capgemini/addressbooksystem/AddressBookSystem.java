@@ -3,10 +3,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.TreeMap;
+/**
+ * @author Mentalist
+ *
+ */
+
 public class AddressBookSystem {
 	
 	private static Map<String,AddressBookMain> addressMap=new TreeMap<>();
+	public static Map<String, Contacts> cityToContactEntryMap = new TreeMap<>();
+	public static Map<String, Contacts> stateToContactEntryMap = new TreeMap<>();
+
 	/**
 	 * uc6
 	 */
@@ -19,6 +28,29 @@ public class AddressBookSystem {
 		addressMap.put(name,object);
 		object.multipleAddressBook();
 	}
+	
+	/**
+	 * uc9
+	 */
+	public static void displayContactsByCityGrouping() {
+		Set<String> listOfcity = cityToContactEntryMap.keySet();
+		for(String cityName : listOfcity) {
+		System.out.println("The Address book entries based on city: " + cityName);
+		personSearch(cityName);
+	}
+}
+	public static void displayContactsByStateGrouping() {
+		Set<String> listOfstate= stateToContactEntryMap.keySet();
+		for(String stateName : listOfstate) {
+		System.out.println("The Address book entries based on state: " + stateName);
+		personSearch(stateName);
+	}
+}
+	public void displayAddressBooks() {
+		System.out.println("\nThe Address Books Added are: \n");
+		addressMap.forEach((k, v) -> System.out.println(k + "\n"));
+		}
+		
 	
 	/**
 	 * uc8
@@ -51,7 +83,8 @@ public class AddressBookSystem {
 		{   Scanner sn=new Scanner(System.in);
 			System.out.println("\n1.Adding a Address Book");
 			System.out.println("\n2.Searching for a Person in Address Books");
-			System.out.println("\n3. Exit");
+			System.out.println("\n3. Displaying Contacts grouped by city");
+			System.out.println("\n4. Displaying Contacts grouped by state");
 			System.out.println("\n Enter Your Choice:");
 			int num=sn.nextInt();
 			switch(num)
@@ -79,7 +112,11 @@ public class AddressBookSystem {
 				break;
 
 			case 3:
+				displayContactsByCityGrouping();
 				break;
+			case 4:
+				displayContactsByStateGrouping();
+				break;	
 			}
 		}
 		
