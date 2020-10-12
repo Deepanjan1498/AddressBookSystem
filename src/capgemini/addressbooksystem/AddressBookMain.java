@@ -89,7 +89,7 @@ public class AddressBookMain {
 	 * uc5
 	 *args
 	 */
-	public static void main(String args[]) {
+	public void  multipleAddressBook() {
 		Scanner sa = new Scanner(System.in);
 		AddressBookMain Contactno1=new AddressBookMain();
 		for(int i=1;i>0;i++)
@@ -110,4 +110,5 @@ public class AddressBookMain {
 	    }	
 	}
 
+	
 }
