@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 /**
  * @author Mentalist
  *
@@ -74,25 +76,12 @@ public class AddressBookSystem {
 	 * uc8
 	 * @param search
 	 */
-	public static void personSearch(String search) {
-		int numOfPerson=0;
-		Iterator contactArray = addressMap.entrySet().iterator();
-		while(contactArray.hasNext()) {
-			Map.Entry entry=(Map.Entry) contactArray.next();
-			AddressBookMain a=(AddressBookMain)entry.getValue();
-			List<Contacts> list=a.getcontactArray();
-			for(Contacts con:list)
-			{
-				if(con.getCity().equals(search)||con.getState().equals(search))
-				{
-					System.out.println(con);
-					numOfPerson++;
-				}
-			}
-			if(numOfPerson==0)
-				System.out.println("No person was found");
-		}
-		
+	public static void personSearch(String searchIn) {
+		Predicate<Contacts> search = n -> n.getFirstName().equals(searchIn) ? true : false;
+		Consumer<Contacts> display = n -> System.out.println(n);
+		addressMap.forEach((k, m) -> {
+		m.getcontactArray().stream().filter(search).forEach(display);
+		});	
 	}
 	public static void main(String args[])
 	{

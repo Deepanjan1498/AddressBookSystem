@@ -2,16 +2,19 @@ package capgemini.addressbooksystem;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
 
 	private ArrayList<Contacts> contactArray;
 	private Map<String, Contacts> contactMap;
-
+	
 	public AddressBookMain() {
 		contactArray = new ArrayList<>();
 		contactMap = new HashMap<>();
@@ -32,7 +35,6 @@ public class AddressBookMain {
 		System.out.println("Enter First Name of the contact");
 	     String firstName = s.nextLine();
 		for(int i=1;i>0;i++){
-			
 		     if(duplicateEntryValidation(firstName))
 		    	 continue;
 		     else 
@@ -114,7 +116,8 @@ public class AddressBookMain {
 			System.out.println("\n1. Add Contact Details");
 			System.out.println("\n2. Edit Contact Details");
 			System.out.println("\n3. Delete Contact Details");
-			System.out.println("\n4. Exit");
+			System.out.println("\n4. Sorting Contact Details by Person's name:");
+			System.out.println("\n5. Exit");
 			System.out.println("\nEnter your choice");
 			int index=sa.nextInt();
 			switch(index)
@@ -131,7 +134,8 @@ public class AddressBookMain {
 					else
 						deleteContact();
 			break;
-			case 4:System.out.println("Exit");
+			case 4:alphabeticSorting();
+			case 5:System.out.println("Exit");
 				   System.exit(0);
 			break;
 			}
@@ -143,14 +147,18 @@ public class AddressBookMain {
 	 * @return
 	 */
 	public boolean duplicateEntryValidation(String name) {
-		for (Contacts entry : contactArray) {
-			if (entry.getFirstName().equals(name)) {
-				System.out.println("A Person's entry with the same name already exists.\n");
-				return true;
-			}
-		}
-		return false;
-
-	
+		Predicate<Contacts> compareName = n -> n.equals(name);
+		boolean result = contactArray.stream().anyMatch(compareName);
+		return result;
 	}
+	/**
+	 * uc11
+	 */
+	public void alphabeticSorting()
+	{
+	List<Contacts> sortedList = contactArray.stream()
+	.sorted(Comparator.comparing(Contacts::getFirstName))
+	.collect(Collectors.toList());
+	sortedList.forEach(System.out::println);
+	}	
 }
