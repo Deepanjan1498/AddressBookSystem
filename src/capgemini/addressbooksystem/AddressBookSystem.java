@@ -5,7 +5,7 @@ import java.util.TreeMap;
 public class AddressBookSystem {
 	
 	private static Map<String,AddressBookMain> addressMap=new TreeMap<>();
-	public static void addNewAddressBook()
+	public void addNewAddressBook()
 	{
 		Scanner sc=new Scanner(System.in);
 		AddressBookMain object=new AddressBookMain();
@@ -18,8 +18,9 @@ public class AddressBookSystem {
 	public static void main(String args[])
 	{
 		AddressBookSystem AddressBook=new AddressBookSystem();
-		System.out.println("Enter 1 to add a book");
-		AddressBookSystem.addNewAddressBook();
+		System.out.println("Enter name to add ");
+		AddressBook.addNewAddressBook();
+		
 	}
 }
 

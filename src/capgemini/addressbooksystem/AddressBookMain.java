@@ -1,5 +1,6 @@
 package capgemini.addressbooksystem;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +22,14 @@ public class AddressBookMain {
 	public void addNewContact() {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Enter First Name of the contact");
-		String firstName = s.nextLine();
+	     String firstName = s.nextLine();
+		for(int i=1;i>0;i++){
+			
+		     if(duplicateEntryValidation(firstName))
+		    	 continue;
+		     else 
+		    	 break;
+		}	
 		System.out.println("Enter Last Name of the contact");
 		String lastName = s.nextLine();
 		System.out.println("Enter Phone Number of the contact");
@@ -87,28 +95,54 @@ public class AddressBookMain {
 
 	/**
 	 * uc5
+	 * &uc 6
 	 *args
+	 * @param firstName 
 	 */
 	public void  multipleAddressBook() {
 		Scanner sa = new Scanner(System.in);
-		AddressBookMain Contactno1=new AddressBookMain();
 		for(int i=1;i>0;i++)
 		{
-		System.out.println("Enter the choice to be performed \n1.Add new Contact Details. \n2.Edit Existing Contact Details. \n3. Delete Contact Details \n4.Print Address Book \n5.Close");
-		int choice=sa.nextInt();
-		switch(choice){
-		case 1:Contactno1.addNewContact();
-		       break;
-		case 2:Contactno1.editContact();
-               break;		
-		case 3:Contactno1.deleteContact();
-               break;
-		case 4:Contactno1.printContact();       
-               break;
-		case 5:System.exit(0);;       
-		  }
-	    }	
+			System.out.println("\n1. Add Contact Details");
+			System.out.println("\n2. Edit Contact Details");
+			System.out.println("\n3. Delete Contact Details");
+			System.out.println("\n4. Exit");
+			System.out.println("\nEnter your choice");
+			int index=sa.nextInt();
+			switch(index)
+			{
+			case 1:addNewContact();
+			break;
+			case 2:if(contactArray.size()==0)
+					System.out.println("Please Enter the next contacts");
+					else
+				    editContact();
+			break;
+			case 3:if(contactArray.size()==0)
+					System.out.println("Plese Enter the next contacts");
+					else
+						deleteContact();
+			break;
+			case 4:System.out.println("Exit");
+				   System.exit(0);
+			break;
+			}
+	     }
 	}
+	    	
+	/**
+	 * uc7
+	 * @return
+	 */
+	public boolean duplicateEntryValidation(String name) {
+		for (Contacts entry : contactArray) {
+			if (entry.getFirstName().equals(name)) {
+				System.out.println("A Person's entry with the same name already exists.\n");
+				return true;
+			}
+		}
+		return false;
 
 	
+	}
 }
