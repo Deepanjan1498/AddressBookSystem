@@ -91,16 +91,16 @@ public class AddressBookSystem {
 			{
 			case 1:
 			while (true) {
-				AddressBookMain main = new AddressBookMain();
+				AddressBookMain obj = new AddressBookMain();
 				System.out.println("Enter name for address Book");
 				String name = sn.next();
 				if (AddressBook.addressMap.containsKey(name)) {
 					System.out.println("\nDuplicate Address Book Entry not allowed \n");
 					continue;
 				} else {
-					AddressBook.addressMap.put(name, main);
+					AddressBook.addressMap.put(name, obj);
 					System.out.println("\n  Address Book : " + name);
-					main.multipleAddressBook();
+					obj.multipleAddressBook();
 					break;
 				}
 			}
