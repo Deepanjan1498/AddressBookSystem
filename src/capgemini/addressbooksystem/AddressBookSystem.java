@@ -86,7 +86,7 @@ public class AddressBookSystem {
 	public static void main(String args[])
 	{
 		AddressBookSystem AddressBook=new AddressBookSystem();
-		for(int i=0;i>=0;i++)
+		while(true)
 		{   Scanner sn=new Scanner(System.in);
 			System.out.println("\n1.Adding a Address Book");
 			System.out.println("\n2.Searching for a Person in Address Books");

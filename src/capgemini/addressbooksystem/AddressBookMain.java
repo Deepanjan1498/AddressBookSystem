@@ -21,7 +21,7 @@ public class AddressBookMain {
 	private Map<String, Contacts> contactMap;
 	private Map<String,Contacts> cityToContactEntryMap;
 	private Map<String,Contacts> stateToContactEntryMap;
-	
+	AddressBookIOService addressBookIOService = new AddressBookIOService();
 	public AddressBookMain() {
 		contactArray = new ArrayList<>();
 		contactMap = new HashMap<>();

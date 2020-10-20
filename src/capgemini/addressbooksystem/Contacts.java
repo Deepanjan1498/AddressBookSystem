@@ -3,18 +3,21 @@ package capgemini.addressbooksystem;
 public class Contacts {
 	private String firstName;
 	private String lastName;
-	private long phoneNumber;
+	private Long phoneNumber;
 	private String emailId;
 	private String address;
 	private int zipcode;
 	private String city;
 	private String state;
 
-	public Contacts(String firstname, String lastname, long phoneNumber, String emailId, String address, int zipcode,
-			String city, String state) {
+
+	
+
+	public Contacts(String firstName, String lastName, Long phoneNumber, String emailId, String address,
+			int zipcode, String city, String state) {
 		super();
-		this.firstName = firstname;
-		this.lastName = lastname;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
 		this.emailId = emailId;
 		this.address = address;
@@ -39,7 +42,7 @@ public class Contacts {
 		this.lastName = lastName;
 	}
 
-	public long getPhoneNumber() {
+	public Long getPhoneNumber() {
 		return phoneNumber;
 	}
 
